@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <tabs>
+        <mageshop translate="label">
+            <label>MAGESHOP</label>
+            <sort_order>50</sort_order>
+        </mageshop>
+    </tabs>
+    <sections>
+        <instagramwidget translate="label">
+            <label>Instagram Feed</label>
+            <tab>mageshop</tab>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>Gerenciar Token</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <mageshop_select translate="label">
+                            <label>Habilitado</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                        </mageshop_select>
+                        <token translate="label">
+                            <label>Token</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>required-entry</validate>
+                            <depends>
+                                <mageshop_select>1</mageshop_select>
+                            </depends>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </token>
+                        <username translate="label">
+                            <label>Usuario</label>
+                            <frontend_type>text</frontend_type>
+                            <depends>
+                                <mageshop_select>1</mageshop_select>
+                            </depends>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </username>
+
+                        <iduser translate="label">
+                            <label>Id Usuario</label>
+                            <frontend_type>password</frontend_type>
+                            <depends>
+                                <mageshop_select>1</mageshop_select>
+                            </depends>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </iduser>
+                        
+                        <user translate="label">
+                            <label>Obtér dados do usuario</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>MageShop_Instagramwidget_Block_Adminhtml_User</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </user>
+
+                    </fields>
+                </general>
+                <conversion translate="label">
+                    <label>Força atualização de imagens</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>2</sort_order>
+                    <fields>
+                        <run translate="label">
+                            <label>Atualizar Agora</label>
+                            <comment>Forçe uma atualização de imagens</comment>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>MageShop_Instagramwidget_Block_Instagramwidget</frontend_model>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </run>
+                    </fields>
+                </conversion>
+            </groups>
+        </instagramwidget>
+    </sections>
+</config>

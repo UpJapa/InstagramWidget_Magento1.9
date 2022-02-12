@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * Se estiver desabilitado, não renderiza o restante
+ */
+if(!Mage::helper('instagramwidget')->isEnabled()){
+    return false;
+}
+
+// pega todas as imagens
+$path = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/instagramwidget/';
+$imagesreturn = Mage::getModel('instagramwidget/instagramwidget')
+->getCollection()
+->setPageSize($this->getLimit())
+->getData();
+
+$html = null;
+foreach ($imagesreturn as $value) {
+    $html .= '<div class="item"><div class="feed"><a href="' .  $value['permalink'].'" target="_blank"><img src="' . $path . $value['file'].'" alt="'.$value['alt'].'"></a></div></div>';
+}
+
+?>
+
+
+<div class="container_instagram_feed">
+    <h3 class="tituloInstagramName">Instagram @<?php echo Mage::getStoreConfig('instagramwidget/general/username') ?></h3>
+    <div class="row_instagram_feed">
+        <div class="owl-carousel owl-theme owl-carousel_instagram_feed">
+            <?php echo $html; ?>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+jQuery(document).ready(function() {
+    jQuery('.owl-carousel_instagram_feed').owlCarousel({
+        loop: true,
+        rewind: false,
+        margin: 0,
+        responsiveClass: true,
+        touchDrag  : false,
+        mouseDrag  : false,
+        autoplay:true,
+        autoplayTimeout:3500,
+        autoplayHoverPause:true,
+        dots:false,
+        responsive: {
+            0: {
+            items: 2,
+            },
+            600: {
+            items: 3,
+            },
+            1000: {
+            items: 6,
+            }
+        }
+    });
+})
+</script>

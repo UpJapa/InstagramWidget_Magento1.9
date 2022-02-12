@@ -1,0 +1,16 @@
+#### Adicionar na home
+#### CMS > Paginas > Home > Visual > Atualização de Leiaute por XML
+
+<reference name="content">
+   <block type="core/template" name="instagramwidget" template="instagramfeed/instagramwidget.phtml">
+    <action method="setData"><name>limit</name><value>10</value></action>
+    </block>   
+</reference>
+
+### criar um app no https://developers.facebook.com/
+### Usuar exibição basica do instagram
+### Gerar token no facebook developer
+### colar o token: Sistema > Configuração > MageShop > Instagram Feed > Gerenciar Token > Token
+### Clique em atualizar para aplicação obter id e username
+### Salve aplicação, em seguida clique em Força atualização de imagens
+### Clique em atualizar, após retonra uma mensagem de sucesso, atualize o cache e acesse a home page

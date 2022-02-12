@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MageShop_Instagramwidget>
+            <active>true</active>
+            <codePool>community</codePool>
+        </MageShop_Instagramwidget>
+    </modules>
+</config> 

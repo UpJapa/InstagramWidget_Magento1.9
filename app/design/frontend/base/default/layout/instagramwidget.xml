@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<action method="addJs"><js>instagramwidget/jQuery-1.12.4.min.js</js></action>
+			<action method="addItem"><type>skin_css</type><name>css/instagramwidget/instawidget.css</name></action>
+			<action method="addItem"><type>skin_css</type><name>modulos/OwlCarousel2-2-3-4/docs/assets/owlcarousel/assets/owl.carousel.min.css</name></action>
+            <action method="addItem"><type>skin_css</type><name>modulos/OwlCarousel2-2-3-4/docs/assets/owlcarousel/assets/owl.theme.default.min.css</name></action>
+            <action method="addItem"><type>skin_css</type><name>modulos/OwlCarousel2-2-3-4/docs/assets/owlcarousel/assets/owl_personalizado.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>modulos/OwlCarousel2-2-3-4/docs/assets/owlcarousel/owl.carousel.js</name></action>
+		</reference>
+	</default>
+</layout>

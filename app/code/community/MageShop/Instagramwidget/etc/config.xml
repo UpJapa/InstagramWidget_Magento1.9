@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<MageShop_Instagramwidget>
+			<version>1.0.0</version>
+		</MageShop_Instagramwidget>
+	</modules>
+
+	<frontend>
+        <routers>
+            <instagramwidget>
+                <use>standard</use>
+                <args>
+                    <module>MageShop_Instagramwidget</module>
+                    <frontName>feed</frontName>
+                </args>
+            </instagramwidget>
+        </routers>
+		<layout>
+			<updates>
+				<instagramwidget>
+					<file>instagramwidget.xml</file>
+				</instagramwidget>
+			</updates>
+		</layout>
+    </frontend>
+
+	<adminhtml>
+		<layout>
+			<updates>
+				<instagramwidget>
+					<file>instagramwidget.xml</file>
+				</instagramwidget>
+			</updates>
+		</layout>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <instagramwidget>
+                                            <title>Instagram Feed - MageShop</title>
+                                        </instagramwidget>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+	<global>
+
+		<models>
+            <instagramwidget>
+                <class>MageShop_Instagramwidget_Model</class>
+                <resourceModel>instagramwidget_resource</resourceModel>
+            </instagramwidget>
+
+            
+            <instagramwidget_resource>
+                <class>MageShop_Instagramwidget_Model_Resource</class>
+                <entities>
+                    <instagramwidget>
+                        <table>instagramwidget</table>
+                    </instagramwidget>                    
+                </entities>
+            </instagramwidget_resource>
+        </models>
+		
+
+		<blocks>
+			<instagramwidget>
+				<class>MageShop_Instagramwidget_Block</class>
+			</instagramwidget>
+		</blocks>
+		<resources>
+			<instagramwidget_setup>
+				<setup>
+				<module>MageShop_Instagramwidget</module>
+				</setup>
+			</instagramwidget_setup>
+			<instagramwidget_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</instagramwidget_write>
+
+			<instagramwidget_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</instagramwidget_read>
+		</resources>    
+        <helpers>
+            <instagramwidget>
+                <class>MageShop_Instagramwidget_Helper</class>
+            </instagramwidget>
+        </helpers> 
+	</global>
+
+	
+</config>
