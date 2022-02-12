@@ -44,21 +44,30 @@ function getUserInstagramGraph(e) {
 
 function getMediaInstagramGraph(url) {
 
-let settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": `${url}`,
-  "method": "GET",
-  "headers": {
-    "Content-Type": "application/json",
-    "Accept": "*/*",
+  
+  let submit = document.querySelector("#row_instagramwidget_conversion_run .value button");
+  old_html_btn = submit.innerHTML;
+  submit.disabled = true;
+  submit.innerHTML = '<span><span><span>Aguarde <i class="fa fa-spinner fa-spin"></i></span></span></span>'
+ 
+  let settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": `${url}`,
+    "method": "GET",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "*/*",
+    }
   }
-}
 
-jQuery.ajax(settings).done(function (resp) {
-  var results = JSON.parse(resp);
-    var html = '<ul class="messages"><li class="'+results.type+'-msg"><ul><li>' + results.message + '</li></ul></li></ul>';
-    $('messages').update(html);
-});
+  jQuery.ajax(settings).done(function (resp) {
+    var results = JSON.parse(resp);
+      var html = '<ul class="messages"><li class="'+results.type+'-msg"><ul><li>' + results.message + '</li></ul></li></ul>';
+      $('messages').update(html);
+      submit.innerHTML = old_html_btn
+  });
+
+  submit.disabled = false;
 
 }
