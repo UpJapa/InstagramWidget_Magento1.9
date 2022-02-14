@@ -82,6 +82,11 @@ class MageShop_Instagramwidget_GraphController extends Mage_Core_Controller_Fron
     public function newtokenAction()
     {
         $this->token = Mage::helper('instagramwidget')->getToken();
+        
+        if(empty($this->token)){
+            return false;
+        }
+
         $url = 'https://graph.instagram.com/v12.0/refresh_access_token?grant_type=ig_refresh_token&access_token=' .$this->token;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
