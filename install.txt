@@ -1,3 +1,9 @@
+#### Configuração de crontab
+## atualizar as imagens 
+curl -i -X GET "base_url/feed/graph/media"
+## gerar um novo token
+curl -i -X GET "base_url/feed/graph/newtoken"
+
 #### Adicionar na home
 #### CMS > Paginas > Home > Visual > Atualização de Leiaute por XML
 
