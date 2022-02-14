@@ -9,7 +9,11 @@ class MageShop_Instagramwidget_GraphController extends Mage_Core_Controller_Fron
     private $token;
     private $response = [];
 
-    
+    /**
+     * Método responsável por gerar as imagens
+     * pode ser executado por get curl -i -X GET "base_url/feed/graph/media"
+     * @return void
+     */
     public function mediaAction()
     {
         $this->token = Mage::helper('instagramwidget')->getToken();
@@ -70,6 +74,36 @@ class MageShop_Instagramwidget_GraphController extends Mage_Core_Controller_Fron
         
     }
 
+    /**
+     * Método responsável por atualizar o token antigo por um novo 
+     * pode ser executado por get curl -i -X GET "base_url/feed/graph/newtoken"
+     * @return bool
+     */
+    public function newtokenAction()
+    {
+        $this->token = Mage::helper('instagramwidget')->getToken();
+        $url = 'https://graph.instagram.com/v12.0/refresh_access_token?grant_type=ig_refresh_token&access_token=' .$this->token;
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response, true);
+
+        if(isset($response['error']) OR empty($response['access_token'])){
+            return false;
+        }
+
+        // atualização do token 
+        $query =  "UPDATE core_config_data SET value ='{$response['access_token']}' WHERE path = '".Mage::helper('instagramwidget')::TOKEN."';";
+        $resource = Mage::getSingleton('core/resource');
+        $writeConnection = $resource->getConnection('core_write');
+        $writeConnection->query($query);
+        $writeConnection->closeConnection();
+        return true;
+    }
+
     private function saveImage()
     {
 
@@ -93,6 +127,13 @@ class MageShop_Instagramwidget_GraphController extends Mage_Core_Controller_Fron
         $this->response = ["type" => 'success', "message" => "Dados Atualizados"];
     }
 
+    /**
+     * Método responsável pro baixar as imagens
+     *
+     * @param string $inPath URL da imagem
+     * @param string $outPath Caminho e nome que será salvo 
+     * @return void
+     */
     private function downloadimage($inPath,$outPath)
     {
         
@@ -106,6 +147,11 @@ class MageShop_Instagramwidget_GraphController extends Mage_Core_Controller_Fron
         fclose($out);
     }
 
+    /**
+     * Exclui as imagens em massa
+     *
+     * @return void
+     */
     private function massDelete(){
 
         try{
@@ -149,9 +195,14 @@ class MageShop_Instagramwidget_GraphController extends Mage_Core_Controller_Fron
         return true;
     }
 
+    /**
+     * Método que pega os ids das imagens e retorna para o php
+     *
+     * @return array
+     */
     private function getIdMidia()
     {
-        $url = 'https://graph.instagram.com/'.Mage::helper('instagramwidget')->getIdUser().'?fields=media&access_token='.$this->token;
+        $url = 'https://graph.instagram.com/v12.0/'.Mage::helper('instagramwidget')->getIdUser().'?fields=media&access_token='.$this->token;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -162,7 +213,7 @@ class MageShop_Instagramwidget_GraphController extends Mage_Core_Controller_Fron
     }
 
     /**
-     * Pega as imagens na api
+     * Pega as imagens na api em massa
      *
      * @param array $ids
      * @return array
@@ -179,7 +230,7 @@ class MageShop_Instagramwidget_GraphController extends Mage_Core_Controller_Fron
 
         foreach ($data as $i => $id) {
         // URL from which data will be fetched
-            $fetchURL = 'https://graph.instagram.com/'.$id['id'].'?fields=media_type,media_url,username,thumbnail_url,permalink,caption&access_token='.$this->token;
+            $fetchURL = 'https://graph.instagram.com/v12.0/'.$id['id'].'?fields=media_type,media_url,username,thumbnail_url,permalink,caption&access_token='.$this->token;
             $multiCurl[$i] = curl_init();
             curl_setopt($multiCurl[$i], CURLOPT_URL,$fetchURL);
             curl_setopt($multiCurl[$i], CURLOPT_HEADER,0);
