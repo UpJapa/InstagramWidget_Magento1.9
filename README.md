@@ -38,14 +38,14 @@
 
 - Site URL : Add url website > Save Changes
 
-## step 3°:
+## Step 3:
 - Add Product 
 
    - ![image](https://user-images.githubusercontent.com/69697560/153918007-89946c0d-0d64-4290-8753-95ad385a3b12.png)
 
    - ![image](https://user-images.githubusercontent.com/69697560/153918111-2babc758-c41d-4ea3-8233-96c4bcce8a70.png)
 
-## step 4°:
+## Step 4°:
 
 - Go to Roles > roles. In the Instagram Tester field, choose Add Instagram Testers
     ![image](https://user-images.githubusercontent.com/69697560/153919241-7f70cf4a-346e-4dc0-957e-c32010665a8e.png)
