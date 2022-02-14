@@ -25,7 +25,7 @@
 ### Step 1:
 - Create app from
 
-    ![Create app](https://user-images.githubusercontent.com/69697560/153916671-543de2ce-a88d-4938-b977-0e4550641573.png)
+    ![image](https://user-images.githubusercontent.com/69697560/153922079-0ef97dfe-515b-471c-85bf-ba4bae28478f.png)
 
 - Enter the neccesary information to create app. Click on Create App ID:
  
