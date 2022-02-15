@@ -52,7 +52,8 @@ class MageShop_Instagramwidget_GraphController extends Mage_Core_Controller_Fron
                             "id" => $imageapi['id'],
                             "file" => isset($imageapi['thumbnail_url']) && !empty($imageapi['thumbnail_url'])  ? $imageapi['thumbnail_url'] : $imageapi['media_url'] ,
                             "permalink" => $imageapi['permalink'],
-                            "alt" => $imageapi['caption']
+                            "alt" => $imageapi['caption'],
+                            "timestamp" => strtotime($imageapi['timestamp'])
                         ];
                     }
                 }
@@ -235,7 +236,7 @@ class MageShop_Instagramwidget_GraphController extends Mage_Core_Controller_Fron
 
         foreach ($data as $i => $id) {
         // URL from which data will be fetched
-            $fetchURL = 'https://graph.instagram.com/v12.0/'.$id['id'].'?fields=media_type,media_url,username,thumbnail_url,permalink,caption&access_token='.$this->token;
+            $fetchURL = 'https://graph.instagram.com/v12.0/'.$id['id'].'?fields=media_type,media_url,username,thumbnail_url,permalink,caption,timestamp&access_token='.$this->token;
             $multiCurl[$i] = curl_init();
             curl_setopt($multiCurl[$i], CURLOPT_URL,$fetchURL);
             curl_setopt($multiCurl[$i], CURLOPT_HEADER,0);

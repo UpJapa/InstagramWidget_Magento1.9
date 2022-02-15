@@ -11,6 +11,7 @@ if(!Mage::helper('instagramwidget')->isEnabled()){
 $path = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/instagramwidget/';
 $imagesreturn = Mage::getModel('instagramwidget/instagramwidget')
 ->getCollection()
+->addAttributeToSort('timestamp', 'DESC')
 ->setPageSize($this->getLimit())
 ->getData();
 
